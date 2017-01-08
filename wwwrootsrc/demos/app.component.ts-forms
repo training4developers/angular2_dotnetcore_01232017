@@ -1,0 +1,176 @@
+import { Component, Pipe, PipeTransform, Directive } from '@angular/core';
+import { FormControl, NG_VALIDATORS } from '@angular/forms';
+
+const emailValidator = (fc: FormControl) : any => {
+  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	if ( !re.test(fc.value) ) {
+		return {
+			email:false
+		};
+	}
+	return null;
+};
+
+@Directive({
+	selector: '[ngModel][type=email]',
+	providers: [ { provide: NG_VALIDATORS, useValue: emailValidator, multi: true  } ]
+})
+export class EmailValidatorDirective { }
+
+@Pipe({
+	name: 'JsLogger'
+})
+export class JsLogger implements PipeTransform {
+	transform(value: any) {
+		console.dir(value);
+		return value;
+	}
+}
+
+interface Option {
+	code: string,
+	caption: string
+}
+
+export class BaseComponent {
+
+	send(contact:any) {
+
+		console.dir(contact);
+	}
+
+
+}
+
+@Component({
+	selector: 'main',
+	styles: ['input.ng-touched.ng-invalid { border: 3px solid red; }', 'textarea { vertical-align:middle; }'],
+	template: `
+		<div (submit)="send(contact)">
+		<form novalidate (submit)="send(contact)">
+
+			<div>
+				<label for="first-name">First Name:</label>
+				<input type="text" id="first-name" name="firstName" [(ngModel)]="contact.firstName">
+				<br><span>Output: {{contact.firstName}}</span>
+			</div>
+
+			<div>
+				<label for="age">Age:</label>
+				<input type="number" id="age" name="age" [(ngModel)]="contact.age">
+				<br><span>Output: {{contact.age}}</span>
+			</div>
+
+			<div>
+				<label for="emailAddress">Email Address:</label>
+				<input type="email" id="email-address" name="emailAddress" [(ngModel)]="contact.emailAddress">
+				<br><span>Output: {{contact.emailAddress}}</span>
+			</div>
+
+			<div>
+				<label for="color">Color:</label>
+				<input type="color" id="color" name="color" [(ngModel)]="contact.color">
+				<br><span>Output: {{contact.color}}</span>
+			</div>
+
+			<div>
+				<label for="date">Date:</label>
+				<input type="date" id="date" name="date" [(ngModel)]="contact.date">
+				<br><span>Output: {{contact.date}}</span>
+			</div>
+
+			<div>
+				<label for="range">Range:</label>
+				<input type="range" id="range" name="range" [(ngModel)]="contact.range">
+				<br><span>Output: {{contact.range}}</span>
+			</div>
+
+			<div>
+				<label for="checkbox">Checkbox:</label>
+				<input type="checkbox" id="checkbox" name="checkbox" [(ngModel)]="contact.checkbox">
+				<br><span>Output: {{contact.heckbox}}</span>
+			</div>
+
+			<fieldset>
+				<legend>Favorite Gas Station</legend>
+
+				<div>
+					<label for="gas-station-casey">Casey's</label>
+					<input type="radio" id="gas-station-casey" name="favGasStation" [(ngModel)]="contact.favGasStation" value="casey">
+				</div>
+
+				<div>
+					<label for="gas-station-quik-trip">Quik Trip</label>
+					<input type="radio" id="gas-station-quik-trip" name="favGasStation" [(ngModel)]="contact.favGasStation" value="quik trip">
+				</div>
+
+				<div>
+					<label for="gas-station-kum-and-go">Kum & Go</label>
+					<input type="radio" id="gas-station-kum-and-go" name="favGasStation" [(ngModel)]="contact.favGasStation" value="kum and go">
+				</div>
+	
+				<span>Output: {{contact.favGasStation}}</span>
+
+			</fieldset>
+
+			<div>
+				<label for="comments">Comments</label>
+				<textarea id="comments" name="comments" rows="5" cols="60" [(ngModel)]="contact.comments"></textarea>
+				<br><span>Output: {{contact.comments}}</span>
+			</div>
+
+			<div>
+				<label>State of Residence</label>
+				<select id="state-of-residence" name="stateOfResidence" [(ngModel)]="contact.stateOfResidence">
+					<option value="">Select One...</option>
+					<option *ngFor="let state of states" [value]="state.code">{{state.caption}}</option>
+				</select>
+				<br><span>Output: {{contact.stateOfResidence}}</span>
+			</div>
+
+			<div>
+				<label>State of Residence 2</label>
+				<select id="state-of-residence2" size="3" name="stateOfResidence2" [(ngModel)]="contact.stateOfResidence2">
+					<option *ngFor="let state of states" [value]="state.code">{{state.caption}}</option>
+				</select>
+				<br><span>Output: {{contact.stateOfResidence2}}</span>
+			</div>
+
+			<div>
+				<label>State of Residence 3</label>
+				<select id="state-of-residence3" size="3" multiple name="stateOfResidence3" [(ngModel)]="contact.stateOfResidence3">
+					<option *ngFor="let state of states" [value]="state.code">{{state.caption}}</option>
+				</select>
+				<br><span>Output: {{contact.stateOfResidence3 | json}}</span>
+			</div>
+
+			<button type="submit" (click)="send(contact)">Send</button>
+
+
+		</form>
+		</div>
+	`
+})
+export class AppComponent extends BaseComponent {
+
+	contact: any = {
+		firstName: '',
+		age: 0,
+		email: '',
+		stateOfResidence: 'FL',
+		stateOfResidence3: ['VA','CA']
+	};
+
+	firstNameMinLength: number = 3;
+
+
+
+	states: Option[] = [
+		{ code: 'IA', caption: 'Iowa' },
+		{ code: 'VA', caption: 'Virginia' },
+		{ code: 'CA', caption: 'California' },
+		{ code: 'FL', caption: 'Florida' },
+		{ code: 'ME', caption: 'Maine' }
+	];
+
+}

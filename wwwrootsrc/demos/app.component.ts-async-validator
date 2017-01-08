@@ -1,0 +1,114 @@
+import { Component, Directive, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+
+const emailValidator = (fc: FormControl) : any => {
+
+	if (fc.value == null || String(fc.value).length === 0) {
+		return null;
+	}
+
+  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+	if ( !re.test(fc.value) ) {
+		return {
+			email:false
+		};
+	}
+
+	return null;
+};
+
+const makeValidator = (fc: FormControl) : Promise<{ [key: string]: any }> => {
+
+	const makes: string[] = [
+		'Ford','Chevrolet','Nissan','Toyota','Kia'
+	];
+
+	return new Promise<{ [key: string]: any }>((resolve, reject) => {
+
+		setTimeout(function() {
+
+			if (makes.filter(m => m === fc.value).length === 0) {
+				console.log('invalid');
+				resolve({
+					makeExists: false
+				});
+			} else {
+				console.log('valid');
+				resolve(null);
+			}
+
+
+		}, 1000);
+
+
+	});
+
+};
+
+
+@Component({
+	selector: 'main',
+	template: `<form novalidate [formGroup]="contactForm">
+
+		<div>
+			<label for="first-name">First Name</label>
+			<input type="text" id="first-name" formControlName="firstName">
+		</div>
+
+		<div>
+			<label for="last-name">Last Name</label>
+			<input type="text" id="last-name" formControlName="lastName">
+		</div>
+
+		<fieldset formGroupName="contactDetails">
+	
+			<div>
+				<label for="email">Email</label>
+				<input type="text" id="email" formControlName="email">
+			</div>
+		
+			<div>
+				<label for="phone">Phone</label>
+				<input type="text" id="phone" formControlName="phone">
+			</div>
+
+		</fieldset>
+
+		<button type="button" (click)="send()">Send</button>
+
+	</form>`,
+	styles: [ 'input.ng-invalid { border: 1px solid red; }' ]
+})
+export class AppComponent implements OnInit {
+
+	contactForm: FormGroup;
+
+	constructor(private fb: FormBuilder) { }
+
+	ngOnInit() {
+
+		this.contactForm = this.fb.group({
+			firstName: ['', [ Validators.required, Validators.minLength(3) ] ],
+			lastName: [ '', null, [ makeValidator ] ],
+			contactDetails: this.fb.group({
+				email: [ '', emailValidator ],
+				phone: ''
+			})
+		});
+	}
+
+
+	send() {
+	
+		const contact = {
+			firstName: this.contactForm.get(['firstName']).value,
+			lastName: this.contactForm.get(['lastName']).value,
+			emailAddress: this.contactForm.get(['contactDetails','email']).value,
+			phoneNumber: this.contactForm.get(['contactDetails','phone']).value
+		};
+
+		console.dir(contact);
+	}
+
+}
