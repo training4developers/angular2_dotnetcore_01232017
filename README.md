@@ -8,13 +8,13 @@ Eric Greene - [http://t4d.io](http://t4d.io) - [LinkedIn](https://www.linkedin.c
 
 Class:
 
-- Monday - Friday: 8:30am to 4:30pm (end at 4pm on Friday)
+- Monday - Friday: 9am to 4pm
 
 Breaks:
 
-- Morning: 10:15am to 10:30am
+- Morning: 10:25am to 10:35am
 - Lunch: Noon to 1pm
-- Afternoon: 2:45pm to 3:00pm
+- Afternoon: 2:25pm to 2:35pm
 
 ## Course Outline
 
@@ -23,8 +23,8 @@ TypeScript & JavaScript topics will be included as needed into the Angular 2 con
 - Day 1 - Technology Overview, Project Setup, Modules, Components, Pipes, Event Handling, Directives, Styling
 - Day 2 - Multiple Modules, Component Inputs/Outputs, Component Composition, Form Validation, Custom Validators
 - Day 3 - Custom Pipes, Observables/Promises, Fetch, WebSockets
-- Day 4 - Services, Dependency Injection, Http Service & .NET Core REST Services
-- Day 5 - Routing, Structural and Attribute Directives, Unit Testing, NPM Packages
+- Day 4 - Services, Dependency Injection, Http Service, Material Design
+- Day 5 - Routing, Structural and Attribute Directives, Unit Testing, NPM Packages, Angular CLI
 
 ## Links
 
@@ -48,9 +48,9 @@ This project configuration is adapted from the [Angular 2 Webpack Starter projec
 
 ## Application Setup
 
-Step 1. Install Node.js (6 or later). Download from [https://nodejs.org](https://nodejs.org).
+Step 1. Install Node.js version 7.4.0. Download from [https://nodejs.org](https://nodejs.org).
 
-Step 2. Install .NET Core. Download from [https://www.microsoft.com/net/core](https://www.microsoft.com/net/core).
+Step 2. Install .NET Core version 1.0.0-preview2-1-003177. Download from [https://www.microsoft.com/net/core](https://www.microsoft.com/net/core).
 
 Step 3. Clone or download a ZIP of this repository. If you downloaded the ZIP of this repository, extract the ZIP file.
 
@@ -72,6 +72,14 @@ If the web page does not load a working application, delete the **node_modules**
 ## Modifying Source code
 
 .NET Core C# code is located throughout the source code tree except for the **wwwrootsrc** folder. Any of the .NET Core C# code can be modified as appropriate. The **wwwrootsrc** folder contains the client-side HTML, CSS, and JS code. This code is ultimately transpiled and bundled with Webpack and deployed to the **wwwroot** which is created by the build process. The web server will serve the client-side assets from the **wwwroot** folder, not the **wwwrootsrc**. Never the less, all changes to the client-side code should be done within the **wwwrootsrc** folder. To launch Webpack in watch mode so file changes in **wwwrootsrc** are automatically processed out to the **wwwroot** folder, please run the command **npm run webpack**. This command will run Webpack, then wait for additional file changes. The terminal window will not be available while waiting, so you will have to open a new window to execute additional terminal commands such as running the application.
+
+It is recommended that Visual Studio Code be used for making modifications. Install the following extensions:
+
+- HookyQR.beautify - provides code beautification
+- ms-vscode.csharp - provides support for the C# language for .NET Core coding
+- dbaeumer.vscode-eslint - provides linting for JavaScript and JSON files
+- glen-84.sass-lint - provides linting for SCSS files
+- eg2.tslint - provides linting for TypeScript files
 
 ## Database Information
 
