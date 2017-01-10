@@ -10,8 +10,12 @@ RUN ["dotnet", "restore"]
 
 RUN ["dotnet", "build"]
 
-RUN ["dotnet", "ef", "database", "update"]
-
 EXPOSE 5000/tcp
 
 CMD ["dotnet", "run", "--server.urls", "http://*:5000"]
+
+# build command
+# docker build -t angular2_dotnetcore_01232017 .
+
+# run command
+# docker run -p 5000:5000 angular2_dotnetcore_01232017
