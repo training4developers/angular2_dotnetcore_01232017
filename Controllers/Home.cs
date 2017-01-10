@@ -8,6 +8,5 @@ namespace Training4Developers
 		{
 			return View();
 		}
-
 	}
 }

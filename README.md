@@ -7,16 +7,18 @@ Eric Greene - [http://t4d.io](http://t4d.io) - [LinkedIn](https://www.linkedin.c
 ## Schedule
 
 Class:
+
 - Monday - Friday: 8:30am to 4:30pm (end at 4pm on Friday)
 
 Breaks:
+
 - Morning: 10:15am to 10:30am
 - Lunch: Noon to 1pm
 - Afternoon: 2:45pm to 3:00pm
 
 ## Course Outline
 
-	TypeScript & JavaScript topics will be included as needed into the Angular 2 content
+TypeScript & JavaScript topics will be included as needed into the Angular 2 content
 
 - Day 1 - Technology Overview, Project Setup, Modules, Components, Pipes, Event Handling, Directives, Styling
 - Day 2 - Multiple Modules, Component Inputs/Outputs, Component Composition, Form Validation, Custom Validators
@@ -57,9 +59,8 @@ Step 4. Open a terminal, change to the folder where the code was cloned to or ex
 Step 5. Run the following commands from the terminal:
 
 ```bash
-$ npm i
-
-$ npm start
+npm i
+npm start
 ```
 
 The command **npm i** will install all of the Node.js package dependencies, TypeScript type definitions, build the Webpack bundles, and restore the .NET Core NuGet packages. Sometimes this command will fail during execution (there is a lot of network activity, anything can and will go wrong). If it fails, run **npm i** again. The command **npm start** will build the Webpack bundles and start (build & run) the .NET Core web application. The URL of the web server will be displayed in the terminal window.

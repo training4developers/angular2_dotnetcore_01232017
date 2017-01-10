@@ -1,16 +1,12 @@
-using System.Text;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 
 using Training4Developers.Interfaces;
 using Training4Developers.Data;
-using Training4Developers.Models;
 using DataModels = Training4Developers.Data.Models;
 
 namespace Training4Developers
@@ -30,7 +26,6 @@ namespace Training4Developers
 
         public IConfigurationRoot Configuration { get; set; }
 
-
         public void SeedNewDatabase(IApplicationBuilder app) { 
 
             using (var context = app.ApplicationServices.GetRequiredService<ApplicationDbContext>()) {
@@ -38,8 +33,6 @@ namespace Training4Developers
                 if (context.Database.EnsureCreated()) {
 
                     context.AddRange(
-                        new DataModels.User { FirstName = "Bob", LastName = "Thomas", EmailAddress = "bob@localhost", HashedPassword = "test" },
-                        new DataModels.User { FirstName = "Jane", LastName = "Thomas", EmailAddress = "jane@localhost", HashedPassword = "test" },
                         new DataModels.Widget { Name = "Red Small Widget", Description = "A red small widget.", Color = "red", Size = "small", Quantity = 4, Price = 3.45M },
                         new DataModels.Widget { Name = "Blue Medium Widget", Description = "A blue medium widget.", Color = "blue", Size = "medium", Quantity = 6, Price = 2.75M },
                         new DataModels.Widget { Name = "Orange Large Widget", Description = "A orange large widget.", Color = "orange", Size = "large", Quantity = 10, Price = 13.65M },
@@ -63,18 +56,12 @@ namespace Training4Developers
             services.AddMvc();
             services.AddOptions();
             
-            services.Configure<JwtOptions>(options =>
-            {
-                options.Secret = Configuration.GetSection("JwtOptions:Secret").Value;
-            });
-            
             // add concrete implementation for repo interfaces
             // added for a scoped lifetime
             // options are
             // transient - created each time per request
             // scoped - created each request
             // singleton - created once
-            services.AddScoped<IUserRepo, UserRepo>();
             services.AddScoped<IWidgetRepo, WidgetRepo>();
         }
 
@@ -91,26 +78,6 @@ namespace Training4Developers
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            //secretKey contains a secret passphrase only your server knows
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(
-                Configuration.GetSection("JwtOptions:Secret").Value));            
-
-            var tokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateLifetime = false,
-                ValidateAudience = false,
-                ValidateIssuer = false,
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = signingKey
-            };
-            
-            app.UseJwtBearerAuthentication(new JwtBearerOptions
-            {
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
-                TokenValidationParameters = tokenValidationParameters
-            });
 
             app.UseStaticFiles();
             app.UseMvc(routes => {
