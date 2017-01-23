@@ -7,7 +7,7 @@ import { Color } from "./models/color";
     template: `
         <h1>{{message}}</h1>
         <ul>
-            <li *ngFor="let color of colors">
+            <li *ngFor="let color of sortedColors">
                 {{color.label}} - {{color.code}}
             </li>
         </ul>
@@ -32,6 +32,7 @@ export class AppComponent {
 
     public message: string = "Hello World!";
     public newColor: Color = new Color();
+    public lastColors: Color[];
     public colors: Color[] = [];
 
     constructor() {
@@ -41,8 +42,24 @@ export class AppComponent {
         this.colors.push(newColor);
     }
 
+    get sortedColors() {
+
+        if (this.lastColors !== this.colors) {
+            console.log("sorted the colors");
+            this.colors.sort(function(a, b) {
+                if (a.code === b.code) {
+                    return 0;
+                }
+                return a.code < b.code ? -1 : 1;
+            });
+            this.lastColors = this.colors;
+        }
+
+        return this.colors;
+    }
+
     public addColor() {
-        this.colors.push(this.newColor);
+        this.colors = this.colors.concat(this.newColor);
         this.newColor = new Color();
     }
 }
