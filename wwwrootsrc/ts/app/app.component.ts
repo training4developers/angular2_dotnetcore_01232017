@@ -1,11 +1,15 @@
 import { Component } from "@angular/core";
 
+import { Color } from "./models/color";
+
 @Component({
     selector: "main",
     template: `
         <h1>{{message}}</h1>
         <ul>
-            <li *ngFor="let color of colors">{{color.label}} - {{color.code}}</li>
+            <li *ngFor="let color of colors">
+                {{color.label}} - {{color.code}}
+            </li>
         </ul>
         <form>
             <div>
@@ -25,25 +29,21 @@ import { Component } from "@angular/core";
     `,
 })
 export class AppComponent {
-    public message: string = "Hello World!";
-    public newColor: any = {
-        code: "",
-        label: "",
-    };
 
-    public colors: any[] = [
-        { code: "green", label: "Green" },
-        { code: "yellow", label: "Yellow" },
-        { code: "red", label: "Red" },
-        { code: "gold", label: "Gold" },
-        { code: "white", label: "White" },
-        { code: "saffron", label: "Saffron" },
-        { code: "blue", label: "Blue" },
-    ];
+    public message: string = "Hello World!";
+    public newColor: Color = new Color();
+    public colors: Color[] = [];
+
+    constructor() {
+        const newColor = new Color();
+        newColor.code = "red";
+        newColor.label = "Red";
+        this.colors.push(newColor);
+    }
 
     public addColor() {
         this.colors.push(this.newColor);
-        this.newColor = {};
+        this.newColor = new Color();
     }
 }
 
