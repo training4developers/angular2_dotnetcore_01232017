@@ -5,7 +5,7 @@
         "**/.svn": true,
         "**/.DS_Store": true,
         "node_modules/": true,
-        "wwwroot/": true,
+        "wwwroot/": false,
         "reports/": true,
         ".vscode/": true,
         "typings/": true,
