@@ -15,6 +15,122 @@
 		<script src="js/polyfills.js"></script>
 		<script src="js/vendor.js"></script>
 		<script src="js/app.js"></script>
+
+        <!--<script>
+
+            'use strict';
+
+            //function outer() {
+
+                function doIt() {
+                    console.log(this);
+                    this.id = 3;
+                }
+
+                doIt();
+                window.doIt();
+            //}
+
+            //outer();
+
+            console.log(doIt === window.doIt);
+
+            const o = {
+                id:2,
+                doIt: doIt
+            };
+
+            o.doIt();
+            console.log(o.doIt === window.doIt);
+
+        </script>-->
+
+        <!--<script>
+
+            'use strict';
+
+            class Cool { 
+                constructor(msg) {
+                    this.message = msg; 
+                }
+                showMessage() {
+                    console.log(this.message);
+                }
+            }
+
+            var c = new Cool('Jane Rocks!');
+            c.showMessage();
+
+            console.log(typeof Cool);
+
+            function Cool2(msg) {
+                this.message = msg;
+            };
+
+            Cool2.prototype.showMessage = function() {
+                console.log(this.message);
+            };
+
+            var c2 = new Cool2('Jeff-Squared Rocks!');
+            c2.showMessage();
+            var c3 = new Cool2('Puru is amazing!');
+            c3.showMessage();
+
+            console.dir(Cool);
+            console.dir(Cool2);
+            console.dir(c);
+            console.dir(c2);
+            console.dir(c3);
+            c2.showMessage();
+            c3.showMessage();
+            console.dir(c2.showMessage === c3.showMessage);
+
+            Cool2.prototype.showMessage = function() {
+                console.log('you have been hacked!');
+            };
+
+            c2.showMessage();
+            c3.showMessage();
+
+
+            
+
+
+        </script>-->
+
+        <!--<script>
+
+            'use strict';
+
+            function outer() {
+
+                console.log(this);
+
+                //var that = this;
+
+                const inner = () => {
+                    console.log(this);
+                };
+
+                inner();
+            }
+
+            window.outer();
+
+        </script>-->
+
+        <!--<script>
+
+            //const doIt = (a,b) => {
+            //    return a + b;
+            //};
+
+            //const doIt = (a,b) => a + b;
+
+            //const doIt = () => 2;
+
+        </script>-->
+
 	</body>
 
 </html>		

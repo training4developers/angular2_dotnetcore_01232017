@@ -5,11 +5,10 @@ import { BrowserModule } from "@angular/platform-browser";
 import "../../scss/styles.scss";
 
 import { AppComponent } from "./app.component";
-import { AppHeader } from "./components/app-header.component";
 
 @NgModule({
     bootstrap: [ AppComponent ],
-    declarations: [ AppComponent, AppHeader ],
+    declarations: [ AppComponent ],
     imports: [ BrowserModule, FormsModule ],
 })
 export class AppModule { }
