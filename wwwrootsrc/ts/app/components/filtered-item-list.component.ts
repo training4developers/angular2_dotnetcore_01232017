@@ -20,7 +20,7 @@ export class FilteredItemList implements OnInit {
             item.includes(filterValue));
     }
 
-    private ngOnInit() {
+    public ngOnInit() {
         this.filteredItems = this.items.concat();
     }
 
