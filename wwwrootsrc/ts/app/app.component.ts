@@ -6,11 +6,13 @@ import { ItemList } from "./components/item-list.component";
 @Component({
     selector: "main",
     template: `
-        <app-header [header]="appHeader"></app-header>
-        <filtered-item-list [items]="colors"></filtered-item-list>`,
+        <list-tool [header]="appHeader">
+            <color-list-container [filterLabel]="colorFilterLabel"></color-list-container>
+        </list-tool>
+   `,
 })
 export class AppComponent {
 
     public appHeader: string = "Color List";
-    public colors: string[] = ["red", "blue", "yellow", "brown", "black"];
+    public colorFilterLabel: string = "Color Filter!!!";
 }

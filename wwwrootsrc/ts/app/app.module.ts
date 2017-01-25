@@ -9,12 +9,15 @@ import { AppHeader } from "./components/app-header.component";
 import { ItemList  } from "./components/item-list.component";
 import { FilteredItemList } from "./components/filtered-item-list.component";
 import { FilterItemForm } from "./components/filter-item-form.component";
+import { ColorListContainer } from "./components/color-list-container.component";
+import { ListTool } from "./components/list-tool.component";
 
 @NgModule({
     bootstrap: [ AppComponent ],
     declarations: [
         AppComponent, AppHeader, ItemList,
         FilteredItemList, FilterItemForm,
+        ColorListContainer, ListTool,
     ],
     imports: [ BrowserModule, FormsModule ],
 })
