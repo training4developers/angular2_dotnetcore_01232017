@@ -19,7 +19,8 @@
 	},
 	"exclude": [
 		"node_modules",
-		"wwwrootsrc/demos"
+		"wwwrootsrc/demos",
+		"samples"
 	],
 	"filesGlob": [
 		"./src/js/**/*.ts",

@@ -6,11 +6,16 @@ import "../../scss/styles.scss";
 
 import { AppComponent } from "./app.component";
 import { AppHeader } from "./components/app-header.component";
-import { MyChangeDetectDemo  } from "./components/my-changedetect-demo.component";
+import { ItemList  } from "./components/item-list.component";
+import { FilteredItemList } from "./components/filtered-item-list.component";
+import { FilterItemForm } from "./components/filter-item-form.component";
 
 @NgModule({
     bootstrap: [ AppComponent ],
-    declarations: [ AppComponent, AppHeader, MyChangeDetectDemo ],
+    declarations: [
+        AppComponent, AppHeader, ItemList,
+        FilteredItemList, FilterItemForm,
+    ],
     imports: [ BrowserModule, FormsModule ],
 })
 export class AppModule { }

@@ -1,17 +1,16 @@
 import { Component } from "@angular/core";
 
 import { AppHeader } from "./components/app-header.component";
+import { ItemList } from "./components/item-list.component";
 
 @Component({
     selector: "main",
-    template: `<app-header [header]="myHeader"></app-header>
-    <input [(ngModel)]="myHeader2">`,
+    template: `
+        <app-header [header]="appHeader"></app-header>
+        <filtered-item-list [items]="colors"></filtered-item-list>`,
 })
 export class AppComponent {
 
-    public myHeader = "Nergwen is kind, compassionate and caring!";
-    public myHeader2 = "This is cool";
-
+    public appHeader: string = "Color List";
+    public colors: string[] = ["red", "blue", "yellow", "brown", "black"];
 }
-
-

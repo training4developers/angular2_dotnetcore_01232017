@@ -3,8 +3,7 @@ import { Component, Input, DoCheck, ChangeDetectionStrategy } from "@angular/cor
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: "app-header",
-    template: `<h1>{{headerMessage}}</h1>
-    <my-changedetect-demo someValue={{headerMessage}}></my-changedetect-demo>`,
+    template: `<h1>{{headerMessage}}</h1>`,
 })
 export class AppHeader implements DoCheck {
 
