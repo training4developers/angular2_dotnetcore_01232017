@@ -4,9 +4,10 @@ import { Component, Input } from "@angular/core";
     selector: "item-list",
     template: `<ul>
         <li *ngFor="let item of items">
-            {{item}}
+            {{item | myUppercase}}
         </li>
-    </ul>`,
+    </ul>
+    <div>{{items | myLength}}</div>`,
 })
 export class ItemList {
 

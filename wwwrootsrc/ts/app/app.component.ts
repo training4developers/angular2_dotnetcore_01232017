@@ -12,7 +12,6 @@ import { ItemList } from "./components/item-list.component";
    `,
 })
 export class AppComponent {
-
     public appHeader: string = "Color List";
-    public colorFilterLabel: string = "Color Filter!!!";
+    public colorFilterLabel: string = "Color Filter";
 }

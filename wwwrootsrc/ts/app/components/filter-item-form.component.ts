@@ -6,7 +6,7 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
         <form>
             <label>{{filterLabel}}</label>
             <input type="text" id="filter-input" name="filterInput"
-                [(ngModel)]="filterInput">
+                [(ngModel)]="filterInput" (keyup)="applyFilter(filterInput)">
             <button (click)="applyFilter(filterInput)">Apply Filter</button>
         </form>
     `

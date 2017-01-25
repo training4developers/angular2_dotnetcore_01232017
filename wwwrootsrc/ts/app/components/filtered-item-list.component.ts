@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from "@angular/core";
         <filter-item-form [filterLabel]="filterLabel"
             (newFilterValue)="receivedNewFilterValue($event)">
         </filter-item-form>
-        <item-list [items]="filteredItems"></item-list>
+        <item-list [items]="items"></item-list>
     `,
 })
 export class FilteredItemList implements OnInit {
@@ -24,7 +24,7 @@ export class FilteredItemList implements OnInit {
     }
 
     public ngOnInit() {
-        this.filteredItems = this.items.concat();
+        this.filteredItems = this.items;
     }
 
 }

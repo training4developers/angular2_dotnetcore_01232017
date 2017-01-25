@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 
 import { ColorsSvc } from "../services/colors-svc";
 
@@ -6,19 +6,24 @@ import { ColorsSvc } from "../services/colors-svc";
     providers: [ ColorsSvc ],
     selector: "color-list-container",
     template: `<filtered-item-list
-        [filterLabel]="filterLabel" [items]="colorsSvc.getColors()"></filtered-item-list>`,
+        [filterLabel]="filterLabel" [items]="colors"></filtered-item-list>`,
 })
-export class ColorListContainer {
+export class ColorListContainer implements OnInit {
 
     @Input()
     public filterLabel: string;
 
+    public colors: string[];
+
     constructor(private colorsSvc: ColorsSvc) { }
 
+    public ngOnInit() {
+        this.colors = this.colorsSvc.getColors();
 
-    // private colorsSvc: ColorsSvc;
-    // constructor(colorsSvc: ColorsSvc) {
-    //     this.colorsSvc = colorsSvc;
-    // }    
-
+        setTimeout(() => {
+            console.log("timeout expired");
+            //this.colors.push("pink");
+            this.colors = this.colors.concat("pink");
+        }, 0);
+    }
 }
