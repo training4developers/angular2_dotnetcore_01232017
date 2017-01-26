@@ -1,2 +1,237 @@
 <main class='container-fluid'>
 </main>
+
+<!--<script>
+
+    "use strict";
+
+    const p1 = new Promise(resolve => setTimeout(() => resolve('a'), 2000));
+    const p2 = new Promise(resolve => setTimeout(() => resolve('b'), 4000));
+    const p3 = new Promise((resolve, reject) => setTimeout(() => reject('c'), 6000));
+    const p4 = new Promise(resolve => setTimeout(() => resolve('d'), 8000));
+
+    p1.then(results => console.log(`resolved: ${results}`));
+    p2.then(results => console.log(`resolved: ${results}`));
+    p3.then(results =>
+        console.log(`resolved: ${results}`))
+       .catch(results =>
+        console.log(`rejected: ${results}`));
+    p4.then(results => console.log(`resolved: ${results}`));
+
+
+    const p5 = Promise.all([p1,p2]);
+    p5.then(function() {
+        console.log('do something else');
+    });
+
+    Promise.all([p5,p3,p4]).then(results => {
+        console.log(results);
+        console.log('all done')
+    }).catch(results => {
+        console.log(results);
+        console.log('one failed');
+    });
+
+
+    /*
+    const p2 = new Promise(function(resolve) {
+
+        setTimeout(function() {
+            resolve('a');
+        }, 2000);
+
+    });
+    */
+
+</script>-->
+
+<!--<script>
+
+    "use strict";
+
+    let counter = 0;
+
+    counter++;
+    setTimeout(function() {
+        console.log('a');
+        counter--;
+        if (counter === 0) {
+            allDone();
+        }
+    }, 2000);
+
+    counter++;
+    setTimeout(function() {
+        console.log('b');
+        counter--;
+        if (counter === 0) {
+            allDone();
+        }
+    }, 1000);
+
+    counter++;
+    setTimeout(function() {
+        console.log('c');
+        counter--;
+        if (counter === 0) {
+            allDone();
+        }
+    }, 3000);
+
+    function allDone() {
+        console.log('all done');
+    }
+
+</script>-->
+
+
+
+
+
+
+
+
+
+<!--<script>
+
+    "use strict";
+
+    const youngMan = new Promise(function youngLady(resolve, reject) {
+
+        setTimeout(function() {
+            resolve('She is madly in love, and young is the love of her life...');
+        }, 2000);
+
+    });
+
+    youngMan.then(function(results) {
+        console.log(results);
+        console.log("yay! I am super excited!");
+        console.log("looking for a place to get married");
+        //return new Promise(function (resolve) {
+        //    setTimeout(function() {
+        //        resolve('found a place to get married!');
+        //    }, 2000);
+        //});
+        //throw Error("we need to meet with Dr. Phil...");
+
+        return Promise.reject("it's not you, it's me");
+    }).then(function(results) {
+
+        console.log(results);
+        
+    }).catch(function(results) {
+        console.log(results);
+        console.log("time to sign up for eHarmony...");
+    });
+
+    console.log('young man is waiting...');
+
+</script>-->
+
+
+
+<!-- Simple Example of Promises -->
+<!--<script>
+
+    "use strict";
+
+    const youngMan = new Promise(function youngLady(resolve, reject) {
+
+        setTimeout(function() {
+            reject('I am marrying your best friend...');
+        }, 2000);
+
+    });
+
+    youngMan.then(function(results) {
+        console.log(results);
+        console.log("yay! I am super excited!");
+    }).catch(function(results) {
+        console.log(results);
+        console.log("time to sign up for eHarmony...");
+    });
+
+    console.log('young man is waiting...');
+
+</script>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<script>
+
+    try {
+
+        setTimeout(function() {
+            try {
+                throw Error('t is not cool');
+                console.log('t is cool');
+            } catch(err) {
+                console.log(err);
+            }
+        }, 2000);
+
+    } catch(err) {
+        console.log(err);
+    }
+
+</script>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<script>
+
+
+
+    function outer() {
+        var t = 2;
+
+        setTimeout(function() {
+            t = 5;
+        }, 2000);
+
+        return function inner() {
+            console.log(t);
+        };
+    }
+
+    var fn = outer();
+    fn();
+
+    setTimeout(function() {
+        fn();
+    }, 4000);
+
+    console.dir(fn);
+
+</script>-->

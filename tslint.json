@@ -6,7 +6,9 @@
 		"curly": true,
 		"no-var-requires": false,
 		"no-string-literal": false,
-        "no-console": [ false ]
+        "no-console": [ false ],
+        "object-literal-sort-keys": false,
+        "ordered-imports": [ false ]
 	},
 	"jsRules": {
 		"curly": true

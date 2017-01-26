@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
+import { HttpModule } from "@angular/http";
 
 import "../../scss/styles.scss";
 
@@ -18,11 +19,10 @@ import { MyLengthPipe } from "./pipes/my-length.pipe";
 @NgModule({
     bootstrap: [ AppComponent ],
     declarations: [
-        AppComponent, AppHeader, ItemList,
-        FilteredItemList, FilterItemForm,
-        ColorListContainer, ListTool, MyUpperCasePipe,
-        MyLengthPipe,
+        AppComponent,
+        AppHeader, ItemList, FilteredItemList, FilterItemForm,
+        ColorListContainer, ListTool, MyUpperCasePipe, MyLengthPipe,
     ],
-    imports: [ BrowserModule, FormsModule ],
+    imports: [ BrowserModule, FormsModule, HttpModule ],
 })
 export class AppModule { }
