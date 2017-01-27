@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpModule } from "@angular/http";
 
@@ -23,6 +23,6 @@ import { MyLengthPipe } from "./pipes/my-length.pipe";
         AppHeader, ItemList, FilteredItemList, FilterItemForm,
         ColorListContainer, ListTool, MyUpperCasePipe, MyLengthPipe,
     ],
-    imports: [ BrowserModule, FormsModule, HttpModule ],
+    imports: [ BrowserModule, FormsModule, HttpModule, ReactiveFormsModule ],
 })
 export class AppModule { }

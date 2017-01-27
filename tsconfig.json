@@ -25,7 +25,8 @@
 	"filesGlob": [
 		"./src/js/**/*.ts",
 		"./typings/index.d.ts",
-		"!./node_modules/**"
+        "./node_modules/t4d-shared/dist/shared.module.d.ts"
+		//"!./node_modules/**"
 	],
 	"atom": {
 		"rewriteTsconfig": false
